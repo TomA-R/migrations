@@ -97,12 +97,13 @@ class MigrationShell extends AppShell {
 	}
 
 /**
- * get the option parser.
+ * Get the console option parser
  *
- * @return void
+ * @return ConsoleOptionParser
  */
 	public function getOptionParser() {
 		$parser = parent::getOptionParser();
+
 		return $parser->description(
 			'The Migration shell.' .
 			'')
@@ -141,7 +142,7 @@ class MigrationShell extends AppShell {
 /**
  * Run the migrations
  *
- * @return void
+ * @return bool
  */
 	public function run() {
 		try {
@@ -191,6 +192,11 @@ class MigrationShell extends AppShell {
 		return true;
 	}
 
+/**
+ * @param array $options Option array
+ * @param bool $once
+ * @return bool|string true or error message
+ */
 	protected function _execute($options, $once) {
 		$result = true;
 		try {
@@ -235,7 +241,6 @@ class MigrationShell extends AppShell {
 		return $options;
 	}
 
-
 	protected function _promptVersionOptions($mapping, $latestVersion) {
 		if (isset($this->args[0]) && is_numeric($this->args[0])) {
 			$options['version'] = (int) $this->args[0];
@@ -276,6 +281,7 @@ class MigrationShell extends AppShell {
 		}
 		return compact('direction') + $options;
 	}
+
 /**
  * Generate a new migration file
  *
@@ -625,7 +631,7 @@ class MigrationShell extends AppShell {
  * Write a migration with given name
  *
  * @param string $name Name of migration
- * @param int the version number (timestamp)
+ * @param int $version The version number (timestamp)
  * @param array $migration Migration instructions array
  * @return boolean
  */
@@ -661,7 +667,7 @@ class MigrationShell extends AppShell {
  * Include and generate a template string based on a template file
  *
  * @param string $template Template file name
- * @param array $vars List of variables to be used on tempalte
+ * @param array $vars List of variables to be used on template
  * @return string
  */
 	private function __generateTemplate($template, $vars) {
@@ -694,7 +700,7 @@ class MigrationShell extends AppShell {
  * Callback used to display what migration is being runned
  *
  * @param CakeMigration $Migration Migration being performed
- * @param string $direction Direction being runned
+ * @param string $direction Direction being run
  * @return void
  */
 	public function beforeMigration(&$Migration, $direction) {
@@ -705,7 +711,7 @@ class MigrationShell extends AppShell {
  * Callback used to create a new line after the migration
  *
  * @param CakeMigration $Migration Migration being performed
- * @param string $direction Direction being runned
+ * @param string $direction Direction being run
  * @return void
  */
 	public function afterMigration(&$Migration, $direction) {
