@@ -58,4 +58,3 @@ class InitMigrations extends CakeMigration {
 		return true;
 	}
 }
-?>

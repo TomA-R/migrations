@@ -173,4 +173,3 @@ class ConvertVersionToClassNames extends CakeMigration {
 		}
 	}
 }
-?>

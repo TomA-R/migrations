@@ -54,5 +54,3 @@ class IncreaseClassNameLength extends CakeMigration {
 		return true;
 	}
 }
-
-?>

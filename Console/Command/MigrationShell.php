@@ -115,8 +115,7 @@ class MigrationShell extends AppShell {
 					'help' => __('Force \'generate\' to compare all tables.')))
 			->addOption('connection', array(
 					'short' => 'c',
-					'default' => 'default',
-					'help' => __('Set db config <config>. Uses \'default\' if none is specified.')))
+					'help' => __('Set db config <config>. Uses \'' . $this->connection . '\' if none is specified.')))
 			->addOption('no-auto-init', array(
 					'short' => 'n',
 					'boolean' => true,
