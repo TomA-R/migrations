@@ -32,7 +32,7 @@ class MigrationShell extends AppShell {
  *
  * @var string
  */
-	public $connection = 'data';
+	public $connection = 'default';
 
 /**
  * Current path to load and save migrations

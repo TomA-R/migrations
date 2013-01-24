@@ -107,6 +107,43 @@ class CakeMigration extends Object {
 	public $callback = null;
 
 /**
+ * @var array
+ */
+  public $null = array('null' => true);
+
+/**
+ * Column type aliases
+ *
+ * @var array
+ */
+  protected $_fieldTypes = array(
+    'id'               => array('type' => 'integer', 'null' => false, 'default' => NULL, 'length' => 20, 'key' => 'primary'),
+    'boolean'          => array('type' => 'boolean', 'null' => false, 'default' => NULL),
+    'ip'               => array('type' => 'string', 'null' => false, 'default' => NULL, 'length' => 15),
+    'status'           => array('type' => 'string', 'null' => false, 'default' => 'unprocessed', 'length' => 20),
+    'hashed_id'        => array('type' => 'string', 'null' => false, 'default' => NULL, 'length' => 40),
+    'timezone'         => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 35),
+    'email'            => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 254),
+    'money'            => array('type' => 'float', 'null' => true, 'default' => NULL, 'length' => 10),
+    'country_code'     => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 2),
+    'feed_id_string'   => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 255),
+    'match_type'       => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 20),
+    'datetime'         => array('type' => 'datetime', 'null' => false, 'default' => NULL),
+    'date'             => array('type' => 'date', 'null' => false, 'default' => NULL),
+    'hour'             => array('type' => 'integer', 'null' => false, 'default' => NULL),
+    'microtime'        => array('type' => 'float', 'null' => false, 'default' => NULL),
+    'referrer'         => array('type' => 'text', 'null' => true, 'default' => NULL),
+    'referrer_host'    => array('type' => 'string', 'null' => true, 'default' => NULL),
+    'subid'            => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 30),
+    'city'             => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 100),
+    'region'           => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 10),
+    'user_agent'       => array('type' => 'text', 'null' => true, 'default' => NULL),
+    'user_agent_med'   => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 20),
+    'user_agent_short' => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 10),
+    'keyword'          => array('type' => 'text', 'null' => true, 'default' => NULL)
+  );
+
+/**
  * Before migration callback
  *
  * @param string $direction, up or down direction of migration process
