@@ -97,12 +97,13 @@ class MigrationShell extends AppShell {
 	}
 
 /**
- * get the option parser.
+ * Get the console option parser
  *
- * @return void
+ * @return ConsoleOptionParser
  */
 	public function getOptionParser() {
 		$parser = parent::getOptionParser();
+
 		return $parser->description(
 			'The Migration shell.' .
 			'')
@@ -115,8 +116,7 @@ class MigrationShell extends AppShell {
 					'help' => __('Force \'generate\' to compare all tables.')))
 			->addOption('connection', array(
 					'short' => 'c',
-					'default' => 'default',
-					'help' => __('Set db config <config>. Uses \'default\' if none is specified.')))
+					'help' => __('Set db config <config>. Uses \'' . $this->connection . '\' if none is specified.')))
 			->addOption('no-auto-init', array(
 					'short' => 'n',
 					'boolean' => true,
@@ -142,7 +142,7 @@ class MigrationShell extends AppShell {
 /**
  * Run the migrations
  *
- * @return void
+ * @return bool
  */
 	public function run() {
 		try {
@@ -192,10 +192,16 @@ class MigrationShell extends AppShell {
 		return true;
 	}
 
+/**
+ * @param array $options Option array
+ * @param bool $once
+ * @return bool|string true or error message
+ */
 	protected function _execute($options, $once) {
 		$result = true;
 		try {
 			$result = $this->Version->run($options);
+
 		} catch (MigrationException $e) {
 			$this->out(__d('migrations', 'An error occurred when processing the migration:'));
 			$this->out('  ' . sprintf(__d('migrations', 'Migration: %s'), $e->Migration->info['name']));
@@ -237,7 +243,7 @@ class MigrationShell extends AppShell {
 
 	protected function _promptVersionOptions($mapping, $latestVersion) {
 		if (isset($this->args[0]) && is_numeric($this->args[0])) {
-			$options['version'] = (int)$this->args[0];
+			$options['version'] = (int) $this->args[0];
 
 			$valid = isset($mapping[$options['version']]) || ($options['version'] === 0 && $latestVersion > 0);
 			if (!$valid) {
@@ -257,13 +263,13 @@ class MigrationShell extends AppShell {
 					continue;
 				}
 
-				$valid = is_numeric($response) && isset($mapping[(int)$response]);
+				$valid = is_numeric($response) && isset($mapping[(int) $response]);
 				if ($valid) {
-					$options['version'] = (int)$response;
+					$options['version'] = (int) $response;
 					$direction = 'up';
-					if (empty($mapping[(int)$response]['migrated'])) {
+					if (empty($mapping[(int) $response]['migrated'])) {
 						$direction = 'up';
-					} else if ((int)$response <= $latestVersion) {
+					} else if ((int) $response <= $latestVersion) {
 						$direction = 'down';
 					}
 					break;
@@ -275,6 +281,7 @@ class MigrationShell extends AppShell {
 		}
 		return compact('direction') + $options;
 	}
+
 /**
  * Generate a new migration file
  *
@@ -624,7 +631,7 @@ class MigrationShell extends AppShell {
  * Write a migration with given name
  *
  * @param string $name Name of migration
- * @param int the version number (timestamp)
+ * @param int $version The version number (timestamp)
  * @param array $migration Migration instructions array
  * @return boolean
  */
@@ -660,14 +667,14 @@ class MigrationShell extends AppShell {
  * Include and generate a template string based on a template file
  *
  * @param string $template Template file name
- * @param array $vars List of variables to be used on tempalte
+ * @param array $vars List of variables to be used on template
  * @return string
  */
 	private function __generateTemplate($template, $vars) {
 		extract($vars);
 		ob_start();
 		ob_implicit_flush(0);
-		include (dirname(__FILE__) . DS . 'Templates' . DS . $template . '.ctp');
+		include(dirname(__FILE__) . DS . 'Templates' . DS . $template . '.ctp');
 		$content = ob_get_clean();
 
 		return $content;
@@ -693,7 +700,7 @@ class MigrationShell extends AppShell {
  * Callback used to display what migration is being runned
  *
  * @param CakeMigration $Migration Migration being performed
- * @param string $direction Direction being runned
+ * @param string $direction Direction being run
  * @return void
  */
 	public function beforeMigration(&$Migration, $direction) {
@@ -704,7 +711,7 @@ class MigrationShell extends AppShell {
  * Callback used to create a new line after the migration
  *
  * @param CakeMigration $Migration Migration being performed
- * @param string $direction Direction being runned
+ * @param string $direction Direction being run
  * @return void
  */
 	public function afterMigration(&$Migration, $direction) {
@@ -725,5 +732,4 @@ class MigrationShell extends AppShell {
 			$this->out('      > ' . $message);
 		}
 	}
-
 }

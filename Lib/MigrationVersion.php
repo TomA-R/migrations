@@ -244,7 +244,7 @@ class MigrationVersion {
  * - `version` - Until what version want migrate to
  *
  * @param array $options An array with options.
- * @return boolean
+ * @return boolean|string true or error message
  * @throws Exception
  */
 	public function run($options) {

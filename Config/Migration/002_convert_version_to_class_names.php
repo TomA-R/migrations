@@ -173,5 +173,4 @@ class ConvertVersionToClassNames extends CakeMigration {
 			$this->Version->Version->saveField('class', $migration['class']);
 		}
 	}
-
 }

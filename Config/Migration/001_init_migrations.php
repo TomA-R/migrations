@@ -57,5 +57,4 @@ class InitMigrations extends CakeMigration {
 	public function after($direction) {
 		return true;
 	}
-
 }
