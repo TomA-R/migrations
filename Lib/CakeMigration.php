@@ -227,7 +227,7 @@ class CakeMigration extends Object {
 /**
  * Run migration commands
  *
- * @return void
+ * @return boolean Return true in case of success, otherwise false
  * @throws MigrationException
  */
 	protected function _run() {
