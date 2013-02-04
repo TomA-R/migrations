@@ -447,7 +447,7 @@ class MigrationShell extends AppShell {
  * @return void
  */
 	protected function _clear() {
-		$this->Dispatch->clear();
+		Shell::clear();
 	}
 
 /**
