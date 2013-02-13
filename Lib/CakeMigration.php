@@ -134,13 +134,16 @@ class CakeMigration extends Object {
     'microtime'        => array('type' => 'float', 'null' => false, 'default' => NULL),
     'referrer'         => array('type' => 'text', 'null' => true, 'default' => NULL),
     'referrer_host'    => array('type' => 'string', 'null' => true, 'default' => NULL),
+    'internal_host'    => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 255),
     'subid'            => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 30),
     'city'             => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 100),
     'region'           => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 10),
     'user_agent'       => array('type' => 'text', 'null' => true, 'default' => NULL),
+    'protocol'         => array('type' => 'text', 'null' => true, 'default' => NULL),
+    'method'           => array('type' => 'text', 'null' => true, 'default' => NULL),
     'user_agent_med'   => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 20),
     'user_agent_short' => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 10),
-    'keyword'          => array('type' => 'text', 'null' => true, 'default' => NULL)
+    'keyword'          => array('type' => 'text', 'null' => true, 'default' => NULL),
   );
 
 /**
