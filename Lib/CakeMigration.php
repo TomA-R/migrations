@@ -144,6 +144,10 @@ class CakeMigration extends Object {
     'user_agent_med'   => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 20),
     'user_agent_short' => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 10),
     'keyword'          => array('type' => 'text', 'null' => true, 'default' => NULL),
+    'meta_name'        => array('type' => 'string', 'null' => true, 'default' => NULL),
+    'url'              => array('type' => 'text', 'null' => false, 'default' => NULL),
+    'network_name'     => array('type' => 'string', 'null' => false, 'default' => NULL),
+    'currency_units'   => array('type' => 'string', 'null' => false, 'default' => NULL),
   );
 
 /**
