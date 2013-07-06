@@ -209,7 +209,7 @@ class MigrationShell extends AppShell {
 
 			$this->hr();
 
-			$response = $this->in(__d('migrations', 'Do you want to mark the migration as successful?. [y]es or [a]bort.'), array('y', 'a'));
+			$response = $this->in(__d('migrations', 'Do you want to mark the migration as successful? [y]es or [a]bort.'), array('y', 'a'));
 
 			if (strtolower($response) === 'y') {
 				$this->Version->setVersion($e->Migration->info['version'], $this->type, $options['direction'] === 'up');
